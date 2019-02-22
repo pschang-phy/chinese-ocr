@@ -1,4 +1,4 @@
-pip instal numpy scipy matplotlib pillow jupyter
+pip install numpy scipy matplotlib pillow jupyter
 pip install easydict opencv-python keras h5py lmdb mahotas PyYAML
 pip install cython==0.24
 
