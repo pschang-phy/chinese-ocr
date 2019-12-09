@@ -10,8 +10,8 @@ sys.path.append(os.getcwd() + '/ctpn')
 from ctpn.text_detect import text_detect
 from lib.fast_rcnn.config import cfg_from_file
 from crnn.keras.model import predict as keras_crnn
-from crnn.pytorch.model import predict as pytorch_crnn
-from angle.predict import predict as angle_detector  # 文字方向检测
+# from crnn.pytorch.model import predict as pytorch_crnn
+# from angle.predict import predict as angle_detector  # 文字方向检测
 
 
 def sort_box(box):
@@ -79,9 +79,9 @@ def charRec(img, text_recs, model_type='keras_crnn', adjust=False):
        image = Image.fromarray(partImg).convert('L')
        if model_type == 'keras_crnn':
            sim_pred = keras_crnn(image)
-       elif model_type == 'pytorch_crnn':
-           sim_pred = pytorch_crnn(image)
-       else:
+       # elif model_type == 'pytorch_crnn':
+       #     sim_pred = pytorch_crnn(image)
+       # else:
            raise ValueError("model_type must be keras_crnn or pytorch_crnn")
 
        results[index] = [rec]
@@ -97,16 +97,16 @@ def model(img, model_type='keras_crnn', adjust=False, angle_detect=False):
     @angle_detect: 是否检测文字方向
     """
     angle = 0
-    if angle_detect:
-        angle = angle_detector(img=np.copy(img))  # 文字方向检测
-        img = Image.fromarray(img)
-        if angle == 90:
-            img = img.transpose(Image.ROTATE_90)
-        elif angle == 180:
-            img = img.transpose(Image.ROTATE_180)
-        elif angle == 270:
-            img = img.transpose(Image.ROTATE_270)
-        img = np.array(img)
+    # if angle_detect:
+    #     angle = angle_detector(img=np.copy(img))  # 文字方向检测
+    #     img = Image.fromarray(img)
+    #     if angle == 90:
+    #         img = img.transpose(Image.ROTATE_90)
+    #     elif angle == 180:
+    #         img = img.transpose(Image.ROTATE_180)
+    #     elif angle == 270:
+    #         img = img.transpose(Image.ROTATE_270)
+    #     img = np.array(img)
     
     cfg_from_file('./ctpn/ctpn/text.yml')
     text_recs, tmp, img = text_detect(img)

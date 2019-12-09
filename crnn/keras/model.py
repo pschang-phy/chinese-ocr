@@ -9,7 +9,7 @@ from keras.layers import Flatten, BatchNormalization, Permute, TimeDistributed, 
 from keras.models import Model
 from keras.optimizers import SGD, Adam
 import keras.backend as K
-import keys
+from . import keys
 
 rnnunit = 256
 
