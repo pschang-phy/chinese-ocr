@@ -81,7 +81,7 @@ def charRec(img, text_recs, model_type='keras_crnn', adjust=False):
            sim_pred = keras_crnn(image)
        # elif model_type == 'pytorch_crnn':
        #     sim_pred = pytorch_crnn(image)
-       # else:
+       else:
            raise ValueError("model_type must be keras_crnn or pytorch_crnn")
 
        results[index] = [rec]
